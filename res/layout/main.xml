@@ -45,5 +45,15 @@
             android:layout_gravity="right"
             android:text="@string/current_hour_default"
             android:id="@+id/currentHour"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cities_list"
+            android:id="@+id/citiesListText"/>
+    <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/citiesList"
+            />
 </LinearLayout>
 
