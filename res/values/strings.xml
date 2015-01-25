@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">timezone</string>
+
+    <string name="choose_timezone">Wpisz nazwę miasta</string>
+    <string name="search">Wyszukaj</string>
+    <string name="city_header">Miasto</string>
+    <string name="city_name_default">Nie wybrano</string>
+    <string name="current_hour_header">Aktualna godzina</string>
+    <string name="current_hour_default">Nie wybrano</string>
+
+
+
+
+</resources>
