@@ -36,7 +36,6 @@ public class MyActivity extends Activity {
         list.setAdapter(adapter);
         list.setOnItemClickListener(new ItemClickListener());
 
-
         startService(new Intent(MyActivity.this, TimeService.class));
         bindService(new Intent(this, TimeService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 
@@ -139,7 +138,7 @@ public class MyActivity extends Activity {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-            String text = ((City)adapterView.getItemAtPosition(i)).getName();
+            String text = ((City) adapterView.getItemAtPosition(i)).getName();
 
             sendMessageToService(text);
 
