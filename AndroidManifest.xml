@@ -12,11 +12,6 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".MyAdapter"
-                  android:parentActivityName=".MyActivity">
-        </activity>
-
-
         <service android:name=".services.TimeService"></service>
     </application>
 </manifest>
