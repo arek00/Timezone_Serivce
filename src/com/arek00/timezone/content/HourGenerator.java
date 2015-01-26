@@ -18,7 +18,7 @@ public class HourGenerator {
     }
 
 
-   // private Calendar calendar = Calendar.getInstance();
+    // private Calendar calendar = Calendar.getInstance();
     private TimeZone userTimeZone;
     private int userUTCOffset;
 
@@ -46,7 +46,7 @@ public class HourGenerator {
 
     private int validateHour(int hour) {
 
-        Log.i("Validate hour: ",Integer.toString(hour));
+        Log.i("Validate hour: ", Integer.toString(hour));
 
         if (hour < 0) {
             return 24 + hour;
@@ -54,13 +54,12 @@ public class HourGenerator {
             return hour % 24;
         }
 
-        Log.i("Validate hour: ",Integer.toString(hour));
+        Log.i("Validate hour: ", Integer.toString(hour));
 
         return hour;
     }
 
-    private int millisecondToHour(int millisecond)
-    {
+    private int millisecondToHour(int millisecond) {
         return (millisecond / 3600000);
     }
 }

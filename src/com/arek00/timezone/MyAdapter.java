@@ -1,4 +1,4 @@
-package com.arek00.timezone.services;
+package com.arek00.timezone;
 
 import android.app.Activity;
 import android.content.Context;

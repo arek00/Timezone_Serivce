@@ -120,8 +120,6 @@ public class TimeService extends Service {
     }
 
     private void startTimeService() {
-        //TODO implement this
-
         timer.schedule(new Schedule(), 0L, this.REFRESH_TIME);
         this.isStarted = true;
     }

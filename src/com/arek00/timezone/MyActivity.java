@@ -10,10 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.*;
 import com.arek00.timezone.content.City;
-import com.arek00.timezone.services.MyAdapter;
 import com.arek00.timezone.services.TimeService;
-
-import java.util.List;
 
 
 public class MyActivity extends Activity {
@@ -38,21 +35,8 @@ public class MyActivity extends Activity {
 
         startService(new Intent(MyActivity.this, TimeService.class));
         bindService(new Intent(this, TimeService.class), serviceConnection, Context.BIND_AUTO_CREATE);
-
     }
 
-
-    public void onSearchClick(View view) {
-        EditText editText = (EditText) findViewById(R.id.searchCityText);
-
-        sendMessageToService(editText.getText().toString());
-        Log.i("MyActivity", "Button Clicked");
-    }
-
-    public void citiesList(View view) {
-        Intent citiesListActivity = new Intent(this, MyAdapter.class);
-        startActivity(citiesListActivity);
-    }
 
     private void sendMessageToService(String searchPhrase) {
         if (serviceMessenger != null) {
@@ -72,35 +56,6 @@ public class MyActivity extends Activity {
 
         }
     }
-
-    class IncomingHandler extends Handler {
-
-        @Override
-        public void handleMessage(Message message) {
-            switch (message.what) {
-                case TimeService.SEND_DATE:
-                    setDateToTextView(message);
-                    break;
-                default:
-                    Log.i("MyActivity", "Unknown message");
-            }
-        }
-
-    }
-
-    private void setDateToTextView(Message message) {
-        String cityName, date;
-        cityName = message.getData().getString("cityName");
-        date = message.getData().getString("date");
-
-        TextView textView = (TextView) findViewById(R.id.cityName);
-        textView.setText(cityName);
-
-        textView = (TextView) findViewById(R.id.currentHour);
-        textView.setText(date);
-
-    }
-
 
     //realizing connection with service
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -133,13 +88,53 @@ public class MyActivity extends Activity {
         stopService(new Intent(MyActivity.this, TimeService.class));
     }
 
+
+    public void onSearchClick(View view) {
+        EditText editText = (EditText) findViewById(R.id.searchCityText);
+
+        sendMessageToService(editText.getText().toString());
+        Log.i("MyActivity", "Button Clicked");
+    }
+
+    public void citiesList(View view) {
+        Intent citiesListActivity = new Intent(this, MyAdapter.class);
+        startActivity(citiesListActivity);
+    }
+
+
+    private void setDateToTextView(Message message) {
+        String cityName, date;
+        cityName = message.getData().getString("cityName");
+        date = message.getData().getString("date");
+
+        TextView textView = (TextView) findViewById(R.id.cityName);
+        textView.setText(cityName);
+
+        textView = (TextView) findViewById(R.id.currentHour);
+        textView.setText(date);
+
+    }
+
+    class IncomingHandler extends Handler {
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                case TimeService.SEND_DATE:
+                    setDateToTextView(message);
+                    break;
+                default:
+                    Log.i("MyActivity", "Unknown message");
+            }
+        }
+    }
+
+
     class ItemClickListener implements AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
             String text = ((City) adapterView.getItemAtPosition(i)).getName();
-
             sendMessageToService(text);
 
         }
